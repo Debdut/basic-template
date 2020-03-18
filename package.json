@@ -1,35 +1,23 @@
 {
   "name": "basic-template",
-  "version": "0.1",
-  "description": "A basic template with babel and eslint",
-  "main": "dist/index.js",
-  "repository": "",
-  "author": "Debdut Karmakar <iawaiponly@gmail.com>",
-  "license": "ISC",
-  "private": true,
-  "dependencies": {
-    "ava": "^0.25.0",
-    "babel-core": "^6.26.0",
-    "babel-polyfill": "^6.26.0"
-  },
+  "version": "0.0.1",
+  "main": "dist/lib.js",
+  "module": "dist/lib.esm.js",
+  "browser": "dist/lib.umd.js",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
-    "eslint": "^4.18.2",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.9.0"
-  },
-  "ava": {
-    "require": [
-      "babel-register"
-    ]
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "mocha": "^7.0.1",
+    "rollup": "^1.29.0"
   },
   "scripts": {
-    "build": "babel -d dist/ src/",
-    "lint": "eslint lib test",
-    "prepublish": "yarn run lint && yarn run test && yarn run build",
-    "test": "ava test/**-test.js"
-  }
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "pretest": "npm run build",
+    "test": "mocha",
+    "clean": "rm -rf dist"
+  },
+  "files": [
+    "dist"
+  ]
 }
